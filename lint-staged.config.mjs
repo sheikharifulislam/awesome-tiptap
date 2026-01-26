@@ -1,3 +1,3 @@
 export default {
-  '*.{html,d.ts,tsx,js}': ['prettier --write --cache'],
+  '*.(css|html|d.ts|js|ts|tsx)': 'prettier --write --cache',
 };
