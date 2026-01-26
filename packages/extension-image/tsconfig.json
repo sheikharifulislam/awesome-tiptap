@@ -1,0 +1,4 @@
+{
+  "extends": "@awesome-tiptap/typescript-config/react-library.json",
+  "include": ["src"]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "@awesome-tiptap/extension-image",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "development": "./src/index.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rslib build",
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@rsbuild/plugin-react": "^1.4.3",
+    "@rslib/core": "^0.19.3",
+    "@types/react": "^19.2.8",
+    "eslint": "^9.39.1",
+    "prettier": "^3.7.3",
+    "react": "^19.2.3",
+    "typescript": "^5.9.3",
+    "@awesome-tiptap/typescript-config": "workspace:*",
+    "@awesome-tiptap/eslint-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "private": true
+}
