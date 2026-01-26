@@ -1,71 +1,96 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgb(255 255 255 / 87%);
-  background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  font-size: 3.2em;
+/* Basic editor styles */
+.tiptap :first-child {
+  margin-top: 0;
+}
+
+/* List styles */
+.tiptap ul,
+.tiptap ol {
+  padding: 0 1rem;
+  margin: 1.25rem 1rem 1.25rem 0.4rem;
+}
+
+.tiptap ul li p,
+.tiptap ol li p {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+/* Heading styles */
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
   line-height: 1.1;
+  margin-top: 2.5rem;
+  text-wrap: pretty;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.tiptap h1,
+.tiptap h2 {
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
 }
 
-button:hover {
-  border-color: #646cff;
+.tiptap h1 {
+  font-size: 1.4rem;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.tiptap h2 {
+  font-size: 1.2rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #fff;
-  }
+.tiptap h3 {
+  font-size: 1.1rem;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  font-size: 1rem;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* Code and preformatted text styles */
+.tiptap code {
+  background-color: var(--purple-light);
+  border-radius: 0.4rem;
+  color: var(--black);
+  font-size: 0.85rem;
+  padding: 0.25em 0.3em;
+}
+
+.tiptap pre {
+  background: var(--black);
+  border-radius: 0.5rem;
+  color: var(--white);
+  font-family: JetBrainsMono, monospace;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+}
+
+.tiptap pre code {
+  background: none;
+  color: inherit;
+  font-size: 0.8rem;
+  padding: 0;
+}
+
+.tiptap blockquote {
+  border-left: 3px solid var(--gray-3);
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+}
+
+.tiptap hr {
+  border: none;
+  border-top: 1px solid var(--gray-2);
+  margin: 2rem 0;
 }
