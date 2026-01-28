@@ -1,0 +1,1 @@
+export { getAttribute } from './getAttribute';
