@@ -166,6 +166,30 @@ importers:
 
   packages/typescript-config: {}
 
+  packages/utils:
+    devDependencies:
+      '@awesome-tiptap/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@awesome-tiptap/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@rslib/core':
+        specifier: ^0.19.3
+        version: 0.19.3(typescript@5.9.3)
+      '@types/node':
+        specifier: ^24.10.9
+        version: 24.10.9
+      eslint:
+        specifier: ^9.39.1
+        version: 9.39.1(jiti@2.6.1)
+      prettier:
+        specifier: ^3.7.3
+        version: 3.7.4
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
 packages:
 
   '@ast-grep/napi-darwin-arm64@0.37.0':

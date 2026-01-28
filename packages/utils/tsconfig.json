@@ -1,0 +1,4 @@
+{
+  "extends": "@awesome-tiptap/typescript-config/base.json",
+  "include": ["src"]
+}
