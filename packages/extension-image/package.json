@@ -12,7 +12,8 @@
         "default": "./dist/index.js",
         "types": "./dist/index.d.ts"
       }
-    }
+    },
+    "./styles.css": "./src/styles/index.css"
   },
   "files": [
     "dist"
@@ -26,23 +27,27 @@
   "devDependencies": {
     "@awesome-tiptap/eslint-config": "workspace:*",
     "@awesome-tiptap/typescript-config": "workspace:*",
-    "@awesome-tiptap/utils": "workspace:*",
     "@eslint/js": "^9.39.1",
     "@rsbuild/plugin-react": "^1.4.3",
     "@rslib/core": "^0.19.3",
     "@types/react": "^19.2.8",
     "eslint": "^9.39.1",
     "prettier": "^3.7.3",
-    "react": "^19.2.3",
-    "typescript": "^5.9.3"
+    "react": "^19.2.4",
+    "typescript": "^5.9.3",
+    "@tiptap/react": "^3.17.1",
+    "@tiptap/pm": "^3.17.1"
   },
   "dependencies": {
-    "@tiptap/extension-image": "^3.17.1",
-    "@tiptap/pm": "^3.17.1",
-    "@tiptap/react": "^3.17.1"
+    "@awesome-tiptap/utils": "workspace:*"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "@tiptap/react": "^3.17.1",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@tiptap/pm": "^3.17.1",
+    "@tiptap/core": "^3.17.1"
   }
 }
