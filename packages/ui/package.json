@@ -1,0 +1,22 @@
+{
+  "name": "@awesome-tiptap/ui",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {},
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.10",
+    "eslint": "^9.39.1",
+    "react": "^19.2.4",
+    "typescript": "^5.9.3",
+    "@awesome-tiptap/eslint-config": "workspace:*",
+    "@awesome-tiptap/typescript-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "private": true
+}
