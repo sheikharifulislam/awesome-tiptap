@@ -1,0 +1,5 @@
+@import url('@awesome-tiptap/ui/styles.css');
+
+@source "../../../ui/src/components/button.tsx";
+@source "../../../ui/src/components/select.tsx";
+@source "../**/*.{tsx}";
