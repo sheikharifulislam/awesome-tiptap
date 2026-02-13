@@ -10,16 +10,17 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {
+    "@awesome-tiptap/extension-image": "workspace:*",
     "@tiptap/react": "^3.17.1",
     "@tiptap/starter-kit": "^3.17.1",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "@awesome-tiptap/extension-image": "workspace:*"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^24.10.9",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
     "eslint": "^9.39.1",
