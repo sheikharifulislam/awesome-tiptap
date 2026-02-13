@@ -227,6 +227,4 @@ const Image = Node.create<ImageOptions>({
   },
 });
 
-// export { Image, inputRegex };
 export { Image };
-// export type { ImageOptions, SetImageOptions };
