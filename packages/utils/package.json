@@ -2,13 +2,13 @@
   "name": "@awesome-tiptap/utils",
   "version": "1.0.0",
   "type": "module",
+  "private": true,
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts"
+    "./*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.ts"
     }
   },
-  "types": "./src/index.ts",
   "files": [
     "dist"
   ],
@@ -26,6 +26,5 @@
     "typescript": "^5.9.3",
     "@awesome-tiptap/typescript-config": "workspace:*",
     "@awesome-tiptap/eslint-config": "workspace:*"
-  },
-  "private": true
+  }
 }
