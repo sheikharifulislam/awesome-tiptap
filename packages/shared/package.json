@@ -4,9 +4,13 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./*": {
-      "types": "./src/*.ts",
-      "import": "./src/*.ts"
+    "./utils/*": {
+      "types": "./src/utils/*.ts",
+      "import": "./src/utils/*.ts"
+    },
+    "./hooks/*": {
+      "types": "./src/hooks/*.ts",
+      "import": "./src/hooks/*.ts"
     }
   },
   "files": [
@@ -26,6 +30,16 @@
     "typescript": "^5.9.3",
     "@awesome-tiptap/typescript-config": "workspace:*",
     "@awesome-tiptap/eslint-config": "workspace:*",
-    "@tiptap/react": "^3.17.1"
+    "@tiptap/react": "^3.17.1",
+    "react": "^19.2.4"
+  },
+  "peerDependencies": {
+    "@tiptap/core": "^3.17.1",
+    "@tiptap/pm": "^3.17.1",
+    "@tiptap/react": "^3.17.1",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   }
 }
