@@ -1,5 +1,5 @@
 {
-  "name": "@awesome-tiptap/utils",
+  "name": "@awesome-tiptap/shared",
   "version": "1.0.0",
   "type": "module",
   "private": true,
@@ -25,6 +25,7 @@
     "prettier": "^3.7.3",
     "typescript": "^5.9.3",
     "@awesome-tiptap/typescript-config": "workspace:*",
-    "@awesome-tiptap/eslint-config": "workspace:*"
+    "@awesome-tiptap/eslint-config": "workspace:*",
+    "@tiptap/react": "^3.17.1"
   }
 }
