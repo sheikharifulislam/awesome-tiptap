@@ -1,4 +1,4 @@
-import { parseUnit } from '@awesome-tiptap/utils/parseUnit';
+import { parseUnit } from '@awesome-tiptap/shared/utils/parseUnit';
 import { useCallback, useEffect, useRef } from 'react';
 
 export type Direction = 'top' | 'bottom' | 'left' | 'right';

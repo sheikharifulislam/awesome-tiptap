@@ -1,6 +1,6 @@
-import { generateInlineStyle } from '@awesome-tiptap/utils/generateInlineStyle';
-import { getAttribute } from '@awesome-tiptap/utils/getAttribute';
-import { getElement } from '@awesome-tiptap/utils/getElement';
+import { generateInlineStyle } from '@awesome-tiptap/shared/utils/generateInlineStyle';
+import { getAttribute } from '@awesome-tiptap/shared/utils/getAttribute';
+import { getElement } from '@awesome-tiptap/shared/utils/getElement';
 
 import { mergeAttributes, Node, ReactNodeViewRenderer } from '@tiptap/react';
 import { HTMLAttributes } from 'react';

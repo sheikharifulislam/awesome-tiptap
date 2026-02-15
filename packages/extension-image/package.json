@@ -42,7 +42,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@awesome-tiptap/utils": "workspace:*"
+    "@awesome-tiptap/shared": "workspace:*"
   },
   "peerDependencies": {
     "@tiptap/core": "^3.17.1",
