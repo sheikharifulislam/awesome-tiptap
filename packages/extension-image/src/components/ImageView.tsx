@@ -1,10 +1,9 @@
 import type { NodeViewProps } from '@tiptap/react';
-import { useCallback } from 'react';
 import { ResizableImage } from './ResizableImage';
 
 export function ImageView(props: NodeViewProps) {
-  const { node, extension, updateAttributes } = props;
-  const { src, width, height, alt, showCaption } = node.attrs || {};
+  const { editor, node, extension, updateAttributes, getPos } = props;
+  const { src, width, height, alt, showCaption, align, objectFit } = node.attrs || {};
   const {
     width: initialWidth,
     height: initialHeight,
@@ -13,14 +12,11 @@ export function ImageView(props: NodeViewProps) {
     maxWidth,
     maxHeight,
     resize,
+    wrapperAttributes = {},
+    imgAttributes = {},
   } = extension.options || {};
 
-  const onResize = useCallback(
-    (attrs: { width: string; height: string }) => {
-      updateAttributes(attrs);
-    },
-    [updateAttributes]
-  );
+  const hasContent = node.content.size > 0;
 
   return (
     <ResizableImage
@@ -34,7 +30,15 @@ export function ImageView(props: NodeViewProps) {
       maxHeight={maxHeight}
       resize={resize}
       showCaption={showCaption}
-      onResize={onResize}
+      onUpdateAttributes={updateAttributes}
+      editor={editor}
+      getPos={getPos}
+      nodeSize={node.nodeSize}
+      hasContent={hasContent}
+      wrapperAttributes={wrapperAttributes}
+      imgAttributes={imgAttributes}
+      align={align}
+      objectFit={objectFit}
     />
   );
 }

@@ -1,4 +1,7 @@
+import { isValidPosition } from '@awesome-tiptap/shared/utils/isValidPosition';
 import { parseUnit } from '@awesome-tiptap/shared/utils/parseUnit';
+import { Editor } from '@tiptap/core';
+import { NodeSelection } from '@tiptap/pm/state';
 import { useCallback, useEffect, useRef } from 'react';
 
 export type Direction = 'top' | 'bottom' | 'left' | 'right';
@@ -9,7 +12,7 @@ export interface UseResizeOptions {
   minHeight?: string;
   maxHeight?: string;
   preserveAspectRatio: boolean;
-  onResize: (attrs: { width: string; height: string }) => void;
+  onUpdateAttributes?: (attrs: Record<string, any>) => void;
 }
 
 interface DragState {
@@ -53,9 +56,19 @@ function computeNewSize(
   }
 }
 
-export function useResize(options: UseResizeOptions) {
-  const { minWidth, maxWidth, minHeight, maxHeight, preserveAspectRatio, onResize } =
-    options;
+export function useResize(
+  options: UseResizeOptions,
+  editor: Editor,
+  getPos: () => number | undefined
+) {
+  const {
+    minWidth,
+    maxWidth,
+    minHeight,
+    maxHeight,
+    preserveAspectRatio,
+    onUpdateAttributes,
+  } = options;
   const containerRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<DragState | null>(null);
 
@@ -101,12 +114,27 @@ export function useResize(options: UseResizeOptions) {
 
     const container = containerRef.current;
     if (container) {
-      onResize?.({
+      onUpdateAttributes?.({
         width: `${container.offsetWidth}px`,
         height: `${container.offsetHeight}px`,
       });
     }
-  }, [handleMouseMove, onResize]);
+
+    const wasNodeSelection =
+      editor.state.selection instanceof NodeSelection &&
+      editor.state.selection.node.type.name === 'image';
+
+    // Restore the node selection after resizing
+    // This because we treat the image-node-extension.ts as content: "inline*"
+    const pos = getPos();
+
+    // Had to use isResizingRef flag because during resizing,
+    // the selection gets lost and cannot be detected here
+    // Its because image-node-extension.ts contain content: "inline*"
+    if (isValidPosition(pos) && wasNodeSelection) {
+      editor.chain().focus().setNodeSelection(pos).run();
+    }
+  }, [handleMouseMove, onUpdateAttributes, editor, getPos]);
 
   const handleMouseDown = useCallback(
     (direction: Direction) => (e: React.MouseEvent) => {

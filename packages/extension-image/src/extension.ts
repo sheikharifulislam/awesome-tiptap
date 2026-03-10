@@ -1,9 +1,9 @@
 import { generateInlineStyle } from '@awesome-tiptap/shared/utils/generateInlineStyle';
 import { getAttribute } from '@awesome-tiptap/shared/utils/getAttribute';
 import { getElement } from '@awesome-tiptap/shared/utils/getElement';
-
+import { TextSelection } from '@tiptap/pm/state';
 import { mergeAttributes, Node, ReactNodeViewRenderer } from '@tiptap/react';
-import { HTMLAttributes } from 'react';
+import { type HTMLAttributes } from 'react';
 import { ImageView } from './components/ImageView';
 
 export interface ImageOptions {
@@ -96,17 +96,43 @@ export interface ImageOptions {
     | true;
 }
 
+export interface SetImageOptions {
+  src: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  align?: 'left' | 'center' | 'right';
+  objectFit?: React.CSSProperties['objectFit'];
+}
+
+declare module '@tiptap/core' {
+  interface Commands<ReturnType> {
+    image: {
+      /**
+       * Add an image
+       * @param options The image attributes
+       * @example
+       * editor
+       *   .commands
+       *   .setImage({ src: 'https://tiptap.dev/logo.png', alt: 'tiptap', title: 'tiptap logo' })
+       */
+      setImage: (options: SetImageOptions) => ReturnType;
+    };
+  }
+}
+
 const Image = Node.create<ImageOptions>({
   name: 'image',
   group: 'block',
   content: 'inline*',
+  draggable: true,
   addOptions() {
     return {
       wrapperAttributes: {},
       imgAttributes: {},
       width: 'auto',
       height: '100%',
-      objectFit: 'contain',
+      objectFit: 'cover',
       align: 'left',
       resize: true,
     };
@@ -141,14 +167,10 @@ const Image = Node.create<ImageOptions>({
       },
       align: {
         default: 'left',
-        parseHTML: (element) =>
-          getAttribute({
-            element,
-            attribute: '[data-align]',
-          }),
+        parseHTML: (element) => element.getAttribute('data-align'),
       },
       objectFit: {
-        default: 'contain',
+        default: 'cover',
         parseHTML: (element) =>
           getAttribute({
             element,
@@ -160,12 +182,7 @@ const Image = Node.create<ImageOptions>({
         default: false,
         parseHTML: (element) => {
           if (element.tagName === 'FIGURE') {
-            return (
-              getAttribute({
-                element,
-                attribute: 'data-show-caption',
-              }) === 'true'
-            );
+            return element.getAttribute('data-show-caption') === 'true';
           }
         },
       },
@@ -188,7 +205,7 @@ const Image = Node.create<ImageOptions>({
     const { minHeight, maxHeight, minWidth, maxWidth } = this.options;
 
     const wrapperAttrs = {
-      'data-provider': 'awesome-tiptap',
+      'data-provider': 'awesome-tiptap-img',
       'data-align': align,
     };
 
@@ -210,7 +227,9 @@ const Image = Node.create<ImageOptions>({
     if (hasContent) {
       return [
         'figure',
-        mergeAttributes(wrapperAttrs, this.options.wrapperAttributes || {}),
+        mergeAttributes(wrapperAttrs, this.options.wrapperAttributes || {}, {
+          'data-show-caption': showCaption,
+        }),
         ['img', mergeAttributes(imgAttrs, this.options.imgAttributes || {})],
         ['figcaption', node.content],
       ];
@@ -224,6 +243,66 @@ const Image = Node.create<ImageOptions>({
   },
   addNodeView() {
     return ReactNodeViewRenderer(ImageView);
+  },
+  addKeyboardShortcuts() {
+    return {
+      'Mod-a': ({ editor }) => {
+        const { state, view } = editor;
+        const { selection } = state;
+        const { $from } = selection;
+
+        let imagePos: number | null = null;
+        let imageNode: Node | null = null;
+
+        for (let depth = $from.depth; depth >= 0; depth--) {
+          const nodeAtDepth = $from.node(depth);
+          if (nodeAtDepth.type === this.type) {
+            // @ts-expect-error wil fix later
+            imageNode = nodeAtDepth;
+            // posBefore is the resolved position *before* this node
+            imagePos = depth === 0 ? 0 : $from.before(depth);
+            break;
+          }
+        }
+
+        // Not inside an Image → let default behavior happen
+        if (!imageNode || imagePos == null) {
+          return false;
+        }
+
+        // If the caption/content is empty, allow the default progressive select-all
+        const contentIsEmpty =
+          // @ts-expect-error wil fix later
+          imageNode.content.size === 0 || imageNode.textContent.length === 0;
+
+        if (contentIsEmpty) {
+          return false;
+        }
+
+        // Compute the content range of the image node:
+        // content starts at (nodePos + 1) and ends at (nodePos + node.nodeSize - 1)
+        const start = imagePos + 1;
+        // @ts-expect-error wil fix later
+        const end = imagePos + imageNode.nodeSize - 1;
+
+        const tr = state.tr.setSelection(TextSelection.create(state.doc, start, end));
+        view.dispatch(tr);
+
+        return true;
+      },
+    };
+  },
+  addCommands() {
+    return {
+      setImage:
+        (options) =>
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
+    };
   },
 });
 
