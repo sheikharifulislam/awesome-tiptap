@@ -1,4 +1,7 @@
 {
   "extends": "@awesome-tiptap/typescript-config/react-library.json",
+  "compilerOptions": {
+    "customConditions": ["development"]
+  },
   "include": ["src"]
 }

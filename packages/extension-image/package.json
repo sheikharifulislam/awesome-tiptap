@@ -10,8 +10,14 @@
       "development": "./src/index.ts",
       "import": "./dist/index.js"
     },
-    "./editor.css": "./src/styles/editor.css",
-    "./preview.css": "./src/styles/preview.css"
+    "./editor.css": {
+      "development": "./src/styles/editor.css",
+      "default": "./dist/styles/editor.css"
+    },
+    "./preview.css": {
+      "development": "./src/styles/preview.css",
+      "default": "./dist/styles/preview.css"
+    }
   },
   "files": [
     "dist"

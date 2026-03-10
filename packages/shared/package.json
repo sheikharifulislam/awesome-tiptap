@@ -4,8 +4,14 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    "./utils/*": "./src/utils/*.ts",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./utils/*": {
+      "development": "./src/utils/*.ts",
+      "default": "./src/utils/*.js"
+    },
+    "./hooks/*": {
+      "development": "./src/hooks/*.ts",
+      "default": "./src/hooks/*.js"
+    }
   },
   "files": [
     "dist"
