@@ -23,7 +23,7 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "../../scripts/removeDevelopmentExport.ts",
+    "prepack": "tsx ../../scripts/removeDevelopmentExport.ts",
     "build": "rslib build",
     "format": "prettier --write .",
     "lint": "eslint .",
