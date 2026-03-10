@@ -1,0 +1,27 @@
+{
+  "name": "@awesome-tiptap/ui-state-extension",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "clean": "rimraf .turbo node_modules dist"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.9",
+    "eslint": "^9.39.1",
+    "prettier": "^3.7.3",
+    "typescript": "^5.9.3",
+    "@awesome-tiptap/typescript-config": "workspace:*",
+    "@awesome-tiptap/eslint-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "@tiptap/core": "^3.17.1",
+    "@tiptap/pm": "^3.17.1"
+  }
+}
