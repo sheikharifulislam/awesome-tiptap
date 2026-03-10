@@ -2,16 +2,10 @@
   "name": "@awesome-tiptap/shared",
   "version": "1.0.0",
   "type": "module",
-  "private": true,
+  "sideEffects": false,
   "exports": {
-    "./utils/*": {
-      "types": "./src/utils/*.ts",
-      "import": "./src/utils/*.ts"
-    },
-    "./hooks/*": {
-      "types": "./src/hooks/*.ts",
-      "import": "./src/hooks/*.ts"
-    }
+    "./utils/*": "./src/utils/*.ts",
+    "./hooks/*": "./src/hooks/*.ts"
   },
   "files": [
     "dist"
@@ -23,15 +17,20 @@
     "clean": "rimraf .turbo node_modules dist"
   },
   "devDependencies": {
+    "@awesome-tiptap/eslint-config": "workspace:*",
+    "@awesome-tiptap/typescript-config": "workspace:*",
+    "@awesome-tiptap/ui-state-extension": "workspace:*",
     "@rslib/core": "^0.19.3",
+    "@rsbuild/plugin-react": "^1.4.3",
+    "@tiptap/react": "^3.17.1",
     "@types/node": "^24.10.9",
     "eslint": "^9.39.1",
     "prettier": "^3.7.3",
-    "typescript": "^5.9.3",
-    "@awesome-tiptap/typescript-config": "workspace:*",
-    "@awesome-tiptap/eslint-config": "workspace:*",
-    "@tiptap/react": "^3.17.1",
-    "react": "^19.2.4"
+    "react": "^19.2.4",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.27.19"
   },
   "peerDependencies": {
     "@tiptap/core": "^3.17.1",
