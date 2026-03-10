@@ -1,4 +1,11 @@
-@import url('@awesome-tiptap/extension-image/styles.css');
+@import url('@awesome-tiptap/extension-image/editor.css');
+@import url('@awesome-tiptap/extension-image/preview.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /* Basic editor styles */
 .tiptap :first-child {

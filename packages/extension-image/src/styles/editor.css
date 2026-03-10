@@ -1,8 +1,6 @@
-@import url('@awesome-tiptap/ui/styles.css');
-
-@source "../../../ui/src/components/button.tsx";
-@source "../../../ui/src/components/select.tsx";
-@source "../**/*.{tsx}";
+figure[data-provider='awesome-tiptap-img'] {
+  margin-bottom: 32px;
+}
 
 .awesome-tiptap-resizable-image {
   position: relative;
@@ -23,6 +21,12 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.15s ease;
+}
+
+.awesome-tiptap-resizable-image:hover {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+  border-radius: 2px;
 }
 
 .awesome-tiptap-resizable-image:hover .awesome-tiptap-resize-handle {
@@ -87,3 +91,40 @@
   width: 4px;
   height: 32px;
 }
+
+.awesome-tiptap-image-caption {
+  cursor: text;
+  text-align: center;
+  font-size: 15px;
+  max-width: 100%;
+  width: 100%;
+  white-space: break-spaces;
+  word-break: break-all;
+  overflow-wrap: break-word;
+
+  /* margin-top: 1rem;
+  */
+  outline: none;
+  position: relative;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+/* stylelint-disable selector-class-pattern */
+.awesome-tiptap-image-caption:has(
+    > [data-node-view-content-react] > .ProseMirror-trailingBreak:only-child
+  )::before,
+.awesome-tiptap-image-caption:has(> [data-node-view-content-react]:empty)::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+/* stylelint-enable selector-class-pattern */
