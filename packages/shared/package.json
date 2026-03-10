@@ -17,6 +17,7 @@
     "dist"
   ],
   "scripts": {
+    "prepack": "../../scripts/removeDevelopmentExport.ts",
     "build": "rslib build",
     "format": "prettier --write .",
     "lint": "eslint .",
