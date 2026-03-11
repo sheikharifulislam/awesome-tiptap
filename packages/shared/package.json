@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "prepack": "tsx ../../scripts/removeDevelopmentExport.ts",
+    "postpack": "tsx ../../scripts/removeDevelopmentExport.ts --restore",
     "build": "rslib build",
     "format": "prettier --write .",
     "lint": "eslint .",
